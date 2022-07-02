@@ -116,7 +116,7 @@ func CreateEmailTracer(ctx *gin.Context) {
 
 	ctx.JSON(200, gin.H{
 		"success":        true,
-		"tracerImageUrl": fmt.Sprintf("http://localhost:8080/images?code=%s", email.TraceCode),
+		"tracerImageUrl": fmt.Sprintf("http://localhost:8080/cleardot.gif?code=%s", email.TraceCode),
 	})
 }
 
