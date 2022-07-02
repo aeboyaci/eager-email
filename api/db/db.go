@@ -58,3 +58,9 @@ func InsertOne(collectionName string, document interface{}) (*mongo.InsertOneRes
 
 	return result, err
 }
+
+func UpdateOne(collectionName string, filter interface{}, document interface{}) {
+	collection := database.Collection(collectionName)
+
+	collection.UpdateOne(context.TODO(), filter, document)
+}

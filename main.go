@@ -26,6 +26,13 @@ func main() {
 	app.GET("/api/account/oauth2/sign-in", routes.Oauth2SignIn)
 	app.GET("/api/account/oauth2/google/callback/", routes.Oauth2Callback)
 
+	app.GET("/api/emails", security.Authorize, routes.GetEmails)
+	app.POST("/api/emails", security.Authorize, routes.CreateEmailTracer)
+
+	app.GET("/images", routes.TrackEmail, func(ctx *gin.Context) {
+		ctx.File("./tracer_image.png")
+	})
+
 	app.GET("/api/account/test", security.Authorize, func(ctx *gin.Context) {
 		email, _ := ctx.Get("email")
 
