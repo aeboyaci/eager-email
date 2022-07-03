@@ -55,7 +55,7 @@ func SignIn(ctx *gin.Context) {
 	})
 	tokenString, _ := token.SignedString([]byte("JWT_SECRET"))
 
-	ctx.SetCookie("token", tokenString, 1*60*60, "/", "localhost", false, true)
+	ctx.SetCookie("token", tokenString, 1*60*60, "/", "eager-email.ahmeterenboyaci.com", false, true)
 
 	ctx.JSON(200, gin.H{
 		"success":  true,
@@ -155,7 +155,7 @@ func Oauth2Callback(ctx *gin.Context) {
 	})
 	tokenString, _ := token.SignedString([]byte("JWT_SECRET"))
 
-	ctx.SetCookie("token", tokenString, 1*60*60, "/", "localhost", false, true)
+	ctx.SetCookie("token", tokenString, 1*60*60, "/", "eager-email.ahmeterenboyaci.com", false, true)
 
 	ctx.Redirect(http.StatusTemporaryRedirect, "/api/account/test")
 }

@@ -29,16 +29,8 @@ func main() {
 	app.GET("/api/emails", security.Authorize, routes.GetEmails)
 	app.POST("/api/emails", security.Authorize, routes.CreateEmailTracer)
 
-	app.GET("/images", routes.TrackEmail, func(ctx *gin.Context) {
-		ctx.File("./tracer_image.png")
-	})
-
-	app.GET("/api/account/test", security.Authorize, func(ctx *gin.Context) {
-		email, _ := ctx.Get("email")
-
-		ctx.JSON(200, gin.H{
-			"email": email,
-		})
+	app.GET("/cleardot.gif", routes.TrackEmail, func(ctx *gin.Context) {
+		ctx.File("./cleardot.gif")
 	})
 
 	app.Run("0.0.0.0:8080")
@@ -66,7 +58,7 @@ func ConfigureOauth2() {
 		google.New(
 			googleClientKey,
 			googleClientSecret,
-			"http://localhost:8080/api/account/oauth2/google/callback",
+			"https://eager-email.ahmeterenboyaci.com/api/account/oauth2/google/callback",
 			googleScopes...,
 		),
 	)
